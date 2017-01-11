@@ -1,0 +1,17 @@
+body {
+  background-color: #fafafa;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0;
+}
+
+.container {
+  margin: auto;
+  text-align: center;
+}
+
+.alpha {
+  opacity: 0.5;
+}
