@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import './Viewer.css';
 import arrow from '../public/images/arrow.png';
+import navArrow from '../public/images/navArrow.png';
 
 class Viewer extends Component {
 
@@ -15,16 +16,22 @@ class Viewer extends Component {
       comments: 0,
       embed: ""
     };
+    const parent = this;
+    document.addEventListener("keydown", function(event){
+      parent.handleKeyPress(event, parent);
+    }, false);
+    this.nextVideo = this.nextVideo.bind(this);
+    this.prevVideo = this.prevVideo.bind(this);
   }
 
   updateVideo(videos, current){
     const vid = videos[current].data;
-    console.log(vid);
+    //console.log(vid);
     var link = "https://reddit.com" + vid.permalink;
     var embed = vid.media_embed.content;
     var embed_autoplay = $(embed).attr('src', $(embed).attr('src') + 'rel=0&autoplay=1');
     $(embed_autoplay).height('100%').width('100%');
-    $(".screen").html(embed_autoplay);
+    $(".frame").html(embed_autoplay);
     this.setState({
       title: vid.title,
       link: link,
@@ -34,15 +41,15 @@ class Viewer extends Component {
     })
   }
 
-  // handleKeyPress(event){
-  //   if (event.key === "ArrowRight"){
-  //     ctx.nextVideo();
-  //     event.preventDefault();
-  //   } else if (event.key === "ArrowLeft"){
-  //     ctx.prevVideo();
-  //     event.preventDefault();
-  //   }
-  // }
+  handleKeyPress(event, parent){
+    if (event.key === "ArrowRight"){
+      parent.nextVideo();
+      event.preventDefault();
+    } else if (event.key === "ArrowLeft"){
+      parent.prevVideo();
+      event.preventDefault();
+    }
+  }
 
   nextVideo() {
     if (this.props.videos){
@@ -78,15 +85,21 @@ class Viewer extends Component {
               <b>{this.props.subreddit}</b>
             </a>
           </h6>
-          <div className="screen"></div>
+          <div className="screen">
+            <div className="arrowContainer">
+              <img src={navArrow} alt="Next Video" className="nextArrow" onClick={this.nextVideo}/>
+              <img src={navArrow} alt="Previous Video" className="prevArrow" onClick={this.prevVideo}/>
+            </div>
+            <div className="frame"></div>
+          </div>
           <div className="row">
             <a className="contentLink" target="_blank" href={this.state.link}>
               <p className="contentTitle contentLink">{this.state.title}</p>
             </a>
           </div>
           <div className="row">
-            <p className="contentStats">
-              <img src={arrow} className="arrow arrowUpvote noselect" alt="upvotes"/>&nbsp;
+            <p className="contentStats noselect">
+              <img src={arrow} className="arrow arrowUpvote" alt="upvotes"/>&nbsp;
               {this.state.upvotes}&nbsp;•&nbsp;
               <a className="contentLink" target="_blank" href={this.state.link}>
                 {this.state.comments} Comments
