@@ -23,11 +23,12 @@ class Viewer extends Component {
     }, false);
     this.nextVideo = this.nextVideo.bind(this);
     this.prevVideo = this.prevVideo.bind(this);
+    this.changeCurrent = this.changeCurrent.bind(this);
   }
 
   updateVideo(videos, current){
     const vid = videos[current].data;
-    console.log(vid);
+    //console.log(vid);
     var link = "https://reddit.com" + vid.permalink;
     var embed = vid.media_embed.content;
     var embed_autoplay = $(embed).attr('src', $(embed).attr('src') + 'rel=0&autoplay=1');
@@ -53,7 +54,7 @@ class Viewer extends Component {
   }
 
   nextVideo() {
-    if (this.props.videos){
+    if (this.props.videos && this.state.current < this.props.videos.length - 1){
       this.updateVideo(this.props.videos, this.state.current + 1);
       this.setState({
         current: this.state.current + 1
@@ -67,6 +68,15 @@ class Viewer extends Component {
       this.setState({
         current: this.state.current - 1
       })
+    }
+  }
+
+  changeCurrent(newCurrent){
+    if (newCurrent >= 0 && newCurrent < this.props.videos.length){
+      this.setState({
+        current: newCurrent
+      })
+      this.updateVideo(this.props.videos, newCurrent);
     }
   }
 
@@ -111,7 +121,7 @@ class Viewer extends Component {
               </a>
             </p>
           </div>
-          <Browser videos={this.props.videos} current={this.state.current}/>
+          <Browser videos={this.props.videos} current={this.state.current} changeCurrent={this.changeCurrent}/>
         </div>
       </div>
     );

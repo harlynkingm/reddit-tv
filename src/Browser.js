@@ -14,6 +14,7 @@ class Browser extends Component {
     }
     this.selectNext = this.selectNext.bind(this);
     this.selectPrev = this.selectPrev.bind(this);
+    this.renderMediaPreview = this.renderMediaPreview.bind(this);
   }
 
   componentDidUpdate() {
@@ -32,16 +33,28 @@ class Browser extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if (this.state.flickity){
+      this.state.flickity.selectCell(nextProps.current, false, false);
+    }
+  }
+
   selectNext() {
     if (this.state.flickity){
       this.state.flickity.next(false, false);
+      this.props.changeCurrent(this.props.current + 1);
     }
   }
 
   selectPrev() {
     if (this.state.flickity){
       this.state.flickity.previous(false, false);
+      this.props.changeCurrent(this.props.current - 1);
     }
+  }
+
+  renderMediaPreview(video, index){
+    return <MediaPreview key={index} index={index} video={video.data} current={this.props.current} changeCurrent={this.props.changeCurrent}/>;
   }
 
   render() {
@@ -52,9 +65,7 @@ class Browser extends Component {
       <div className="browserContainer">
         <div className="browser">
         {
-          this.props.videos.map(function(video) {
-            return <MediaPreview key={video.data.id} video={video.data} />;
-          })
+          this.props.videos.map(this.renderMediaPreview)
         }
         </div>
         <div className="arrowContainer smallArrows">
