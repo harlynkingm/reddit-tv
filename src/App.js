@@ -22,7 +22,7 @@ class App extends Component {
     $.ajax({
       type: 'GET',
       url: 'https://www.reddit.com/' + subreddit + '/hot.json?raw_json=1',
-      data: {limit: 100},
+      data: {limit: 99},
       success: function(data){
         const videos = data.data.children.filter(
           function(val){ return val.data.media != null }

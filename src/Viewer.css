@@ -4,8 +4,8 @@
 
 .screen {
   position: relative;
-  height: 60vh;
-  max-height: 60vh;
+  height: 55vh;
+  max-height: 800px;
   min-height: 150px;
   max-width: 100%;
 }
@@ -51,31 +51,38 @@
   transform: rotateZ(180deg);
 }
 
-.arrowContainer {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.viewerBorder {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
-.nextArrow, .prevArrow {
-  position: absolute;
-  top: 50%;
-  opacity: 0.2;
-  transition: opacity 0.1s;
+@media (max-width: 1000px) {
+  .screen {
+    max-height: 350px;
+  }
+
+  .nextArrow, .prevArrow {
+    height: 20px;
+  }
 }
 
-.nextArrow:hover, .prevArrow:hover {
-  cursor: pointer;
-  opacity: 0.3;
-}
+@media (max-width: 550px) {
+  .screen {
+    max-height: 250px;
+    max-width: 94%;
+    margin: auto;
+  }
 
-.nextArrow {
-  right: -15px;
-  transform: translate(100%, -50%);
-}
+  .header-right {
+    display: none;
+  }
 
-.prevArrow {
-  left: -15px;
-  transform: translate(-100%, -50%) rotateZ(180deg);
+  .nextArrow {
+    right: -8px;
+  }
+
+  .prevArrow {
+    left: -8px;
+  }
 }

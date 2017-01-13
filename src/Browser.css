@@ -1,0 +1,11 @@
+.browserContainer {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.browser {
+}
+
+.smallArrows .nextArrow, .smallArrows .prevArrow {
+  height: 20px;
+}

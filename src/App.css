@@ -25,3 +25,37 @@ body {
         -ms-user-select: none;
             user-select: none;
 }
+
+.nomargin {
+  margin: 0;
+}
+
+.arrowContainer {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nextArrow, .prevArrow {
+  position: absolute;
+  top: 50%;
+  opacity: 0.2;
+  transition: opacity 0.1s;
+  height: 30px;
+}
+
+.nextArrow:hover, .prevArrow:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.nextArrow {
+  right: -15px;
+  transform: translate(100%, -50%);
+}
+
+.prevArrow {
+  left: -15px;
+  transform: translate(-100%, -50%) rotateZ(180deg);
+}
