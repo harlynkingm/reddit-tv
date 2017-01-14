@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Browser from './Browser';
+import Channels from './Channels';
 import './Viewer.css';
 import arrow from '../public/images/arrow.png';
 import navArrow from '../public/images/navArrow.png';
@@ -24,6 +25,7 @@ class Viewer extends Component {
     this.nextVideo = this.nextVideo.bind(this);
     this.prevVideo = this.prevVideo.bind(this);
     this.changeCurrent = this.changeCurrent.bind(this);
+    this.resetCurrent = this.resetCurrent.bind(this);
   }
 
   updateVideo(videos, current){
@@ -51,6 +53,12 @@ class Viewer extends Component {
       parent.prevVideo();
       event.preventDefault();
     }
+  }
+
+  resetCurrent() {
+    this.setState({
+      current: 0
+    })
   }
 
   nextVideo() {
@@ -88,6 +96,7 @@ class Viewer extends Component {
 
   render() {
     return (
+      <div className="body">
       <div className="container">
         <div className="viewer">
           <div className="row">
@@ -123,6 +132,8 @@ class Viewer extends Component {
           </div>
           <Browser videos={this.props.videos} current={this.state.current} changeCurrent={this.changeCurrent}/>
         </div>
+      </div>
+      <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent}/>
       </div>
     );
   }

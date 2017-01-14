@@ -11,6 +11,8 @@ class App extends Component {
       subreddit: 'r/videos',
       videos: null
     };
+    this.loadData = this.loadData.bind(this);
+    this.loadedData = this.loadedData.bind(this);
   }
 
   componentDidMount(){
@@ -18,28 +20,32 @@ class App extends Component {
   }
 
   loadData(subreddit){
-    const r = this;
     $.ajax({
       type: 'GET',
       url: 'https://www.reddit.com/' + subreddit + '/hot.json?raw_json=1',
       data: {limit: 99},
-      success: function(data){
-        const videos = data.data.children.filter(
-          function(val){ return val.data.media != null }
-        )
-        r.setState({
-          subreddit: subreddit,
-          videos: videos
-        });
-      }
-    })
+      success: this.loadedData
+    });
+    this.setState({
+      subreddit: subreddit,
+      videos: null
+    });
+  }
+
+  loadedData(data){
+    const videos = data.data.children.filter(
+      function(val){ return val.data.media != null }
+    )
+    this.setState({
+      videos: videos
+    });
   }
 
   render() {
     return (
       <div>
         <Header />
-        <Viewer subreddit={this.state.subreddit} videos={this.state.videos}/>
+        <Viewer subreddit={this.state.subreddit} videos={this.state.videos} currentChannel={this.state.subreddit} changeChannel={this.loadData}/>
       </div>
     );
   }

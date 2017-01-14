@@ -16,7 +16,13 @@ class MediaPreview extends Component {
   render() {
     var url = this.props.video.thumbnail;
     if (url === 'nsfw'){
-      url = 'http://b.thumbs.redditmedia.com/pDX5LeJM_Z5ZDh3-VqrDdNO0fAqvNzMWA9Es0qO-2Wc.png';
+      url = 'http://i.imgur.com/UHzw6.png';
+    } else if (url === ''){
+      if (this.props.video.domain === 'youtube.com'){
+        url = this.props.video.media.oembed.thumbnail_url;
+      } else {
+        url = 'https://b.thumbs.redditmedia.com/vR7SUuNexkV8JKXTK5cR5sYBm8beynO5cBMACJAhfnI.png';
+      }
     }
     var style = {
       backgroundImage: 'url(' + url + ')'

@@ -30,6 +30,10 @@ body {
   margin: 0;
 }
 
+.overlay {
+  position: relative;
+}
+
 .arrowContainer {
   top: 0;
   bottom: 0;

@@ -1,0 +1,47 @@
+.channels {
+  position: absolute;
+  right: 0;
+  top: 129px;
+  width: 250px;
+  height: 55vh;
+  max-height: 800px;
+  min-height: 150px;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 50px 0px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow-y: scroll;
+}
+
+.channel {
+  font-size: 14px;
+  margin: 0;
+  margin-left: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.channelHeader {
+  padding-top: 10px;
+  font-style: italic;
+  cursor: default;
+  font-weight: bold;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .channels {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 550px) {
+  .channels {
+    display: none;
+  }
+}
