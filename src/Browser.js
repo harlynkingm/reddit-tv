@@ -41,15 +41,19 @@ class Browser extends Component {
 
   selectNext() {
     if (this.state.flickity){
-      this.state.flickity.next(false, false);
-      this.props.changeCurrent(this.props.current + 1);
+      const i = this.state.flickity.selectedIndex
+      this.state.flickity.selectCell(i + 3, false, false);
+      //this.state.flickity.next(false, false);
+      //this.props.changeCurrent(this.props.current + 1);
     }
   }
 
   selectPrev() {
     if (this.state.flickity){
-      this.state.flickity.previous(false, false);
-      this.props.changeCurrent(this.props.current - 1);
+      const i = this.state.flickity.selectedIndex
+      this.state.flickity.selectCell(i - 3, false, false);
+      //this.state.flickity.previous(false, false);
+      //this.props.changeCurrent(this.props.current - 1);
     }
   }
 

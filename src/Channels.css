@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   top: 129px;
-  width: 250px;
+  width: 200px;
   height: 55vh;
   max-height: 800px;
   min-height: 150px;
@@ -23,15 +23,48 @@
   cursor: pointer;
 }
 
+.channel:hover {
+  opacity: 0.7;
+}
+
 .channelHeader {
   padding-top: 10px;
   font-style: italic;
   cursor: default;
-  font-weight: bold;
+}
+
+.channelHeader:hover, .selected:hover {
+  opacity: 1;
 }
 
 .selected {
   font-weight: bold;
+}
+
+.newChannel {
+  font-size: 14px;
+  margin: 0;
+  padding-left: 15px;
+  border: none;
+  width: 65%;
+  height: 33px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.newChannelButton {
+  display: inline-block;
+  width: 25%;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  margin: 0;
+  height: 33px;
+}
+
+.newChannelButton:hover {
+  opacity: 0.7;
 }
 
 @media (max-width: 1000px) {

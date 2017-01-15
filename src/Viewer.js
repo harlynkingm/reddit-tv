@@ -91,6 +91,8 @@ class Viewer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.videos){
       this.updateVideo(nextProps.videos, this.state.current);
+    } else {
+      console.log("NO VIDEO");
     }
   }
 

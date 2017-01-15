@@ -5,6 +5,7 @@ class Channels extends Component {
   constructor(props){
     super(props);
     this.state = {
+      newSub: '',
       channels: [
       'r/videos',
       'r/youtubehaiku',
@@ -21,6 +22,10 @@ class Channels extends Component {
     }, false);
     this.renderChannel = this.renderChannel.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.switchChannel = this.switchChannel.bind(this);
   }
 
@@ -47,6 +52,45 @@ class Channels extends Component {
     this.props.resetCurrent();
   }
 
+  handleChange(e){
+    var newValue = e.target.value;
+    if (newValue.length < 2){
+      newValue = 'r/'
+    } else if (!newValue.startsWith('r/')){
+      newValue = 'r/' + newValue;
+    }
+    this.setState({
+      newSub: newValue
+    });
+  }
+
+  handleFocus(e){
+    if (e.target.value === ''){
+      this.setState({
+        newSub: 'r/'
+      });
+    }
+  }
+
+  handleBlur(e){
+    if (e.target.value === 'r/'){
+      this.setState({
+        newSub: ''
+      });
+    }
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    const c = this.state.channels;
+    c.push(this.state.newSub);
+    this.props.changeChannel(this.state.newSub);
+    this.setState({
+      newSub: '',
+      channels: c
+    });
+  }
+
   renderChannel(channel, index){
     if (channel === this.props.currentChannel){
       return <p className="channel selected" key={index}>{channel}</p>
@@ -62,6 +106,10 @@ class Channels extends Component {
         {
           this.state.channels.map(this.renderChannel)
         }
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" value={this.state.newSub} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} className="newChannel" placeholder="Add Channel..."/>
+          <input type="submit" value="Add" className="newChannelButton"/>
+        </form>
       </div>
     );
   }
