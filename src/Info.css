@@ -22,6 +22,10 @@
   overflow-y: scroll;
 }
 
+.infoContent::-webkit-scrollbar {
+  display: none;
+}
+
 .infoHide {
   position: absolute;
   left: 215px;
@@ -51,6 +55,7 @@
   margin-right: 15px;
   margin-top: 10px;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .arrowKeys {
@@ -64,8 +69,8 @@
   color: #FF4300;
 }
 
-@media (max-width: 1550px) {
-  .infoHide {
+@media (max-width: 1450px) {
+  .info {
     display: none;
   }
 }

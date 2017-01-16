@@ -42,14 +42,22 @@ class Browser extends Component {
   selectNext() {
     if (this.state.flickity){
       const i = this.state.flickity.selectedIndex
-      this.state.flickity.selectCell(i + 3, false, false);
+      if (i + 3 < this.props.videos.length){
+        this.state.flickity.selectCell(i + 3, false, false);
+      } else {
+        this.state.flickity.selectCell(this.props.videos.length - 1, false, false);
+      }
     }
   }
 
   selectPrev() {
     if (this.state.flickity){
       const i = this.state.flickity.selectedIndex
-      this.state.flickity.selectCell(i - 3, false, false);
+      if (i - 3 > 0){
+        this.state.flickity.selectCell(i - 3, false, false);
+      } else {
+        this.state.flickity.selectCell(0, false, false);
+      }
     }
   }
 
