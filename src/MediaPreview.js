@@ -31,7 +31,7 @@ class MediaPreview extends Component {
       style.boxShadow = "inset 0px 0px 0px 10px #FF4300";
     }
     return (
-      <div className="preview" style={style} onClick={this.handleClick}></div>
+      <div className="preview" style={style} onClick={this.handleClick} title={this.props.video.title}></div>
     )
   }
 }

@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import './Channels.css'
+import channels from '../public/images/channels.png';
 
 class Channels extends Component {
   constructor(props){
     super(props);
     this.state = {
-      newSub: '',
-      channels: [
-      'r/videos',
-      'r/youtubehaiku',
-      'r/cringe',
-      'r/trailers',
-      'r/musicvideos',
-      'r/standupcomedy',
-      'r/deepintoyoutube'
-      ]
+      hidden: false,
+      newSub: ''
     };
     const parent = this;
     document.addEventListener("keydown", function(event){
@@ -27,6 +20,7 @@ class Channels extends Component {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.switchChannel = this.switchChannel.bind(this);
+    this.hideChannels = this.hideChannels.bind(this);
   }
 
   handleKeyPress(event, parent){
@@ -40,9 +34,9 @@ class Channels extends Component {
   }
 
   switchChannel(change){
-    const i = this.state.channels.indexOf(this.props.currentChannel);
-    if (i + change >= 0 && i + change < this.state.channels.length){
-      this.props.changeChannel(this.state.channels[i + change]);
+    const i = this.props.channels.indexOf(this.props.currentChannel);
+    if (i + change >= 0 && i + change < this.props.channels.length){
+      this.props.changeChannel(this.props.channels[i + change]);
       this.props.resetCurrent();
     }
   }
@@ -82,13 +76,17 @@ class Channels extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    const c = this.state.channels;
-    c.push(this.state.newSub);
+    this.props.addChannel(this.state.newSub);
     this.props.changeChannel(this.state.newSub);
     this.setState({
-      newSub: '',
-      channels: c
+      newSub: ''
     });
+  }
+
+  hideChannels(){
+    this.setState({
+      hidden: !this.state.hidden
+    })
   }
 
   renderChannel(channel, index){
@@ -100,16 +98,23 @@ class Channels extends Component {
   }
 
   render() {
+    var mainClasses = "channels noselect";
+    if (this.state.hidden){
+      mainClasses += " hidden";
+    }
     return (
-      <div className="channels noselect">
-        <p className="channel channelHeader">Channels</p>
-        {
-          this.state.channels.map(this.renderChannel)
-        }
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.newSub} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} className="newChannel" placeholder="Add Channel..."/>
-          <input type="submit" value="Add" className="newChannelButton"/>
-        </form>
+      <div className={mainClasses}>
+        <div className="channelContent">
+          <p className="channel channelHeader">Channels</p>
+          {
+            this.props.channels.map(this.renderChannel)
+          }
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" value={this.state.newSub} onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} className="newChannel" placeholder="Add Channel..."/>
+            <input type="submit" value="Add" className="newChannelButton"/>
+          </form>
+        </div>
+        <img src={channels} alt="Show/Hide Channel" className="channelHide" onClick={this.hideChannels}/>
       </div>
     );
   }

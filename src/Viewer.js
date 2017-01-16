@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Browser from './Browser';
 import Channels from './Channels';
+import Loading from './Loading';
 import './Viewer.css';
 import arrow from '../public/images/arrow.png';
 import navArrow from '../public/images/navArrow.png';
@@ -16,7 +17,8 @@ class Viewer extends Component {
       link: "",
       upvotes: 0,
       comments: 0,
-      embed: ""
+      embed: "",
+      loading: true
     };
     const parent = this;
     document.addEventListener("keydown", function(event){
@@ -35,13 +37,14 @@ class Viewer extends Component {
     var embed = vid.media_embed.content;
     var embed_autoplay = $(embed).attr('src', $(embed).attr('src') + 'rel=0&autoplay=1');
     $(embed_autoplay).height('100%').width('100%');
-    $(".frame").html(embed_autoplay);
+    embed_autoplay = $(embed_autoplay).prop('outerHTML');
     this.setState({
       title: vid.title,
       link: link,
       upvotes: vid.ups,
       comments: vid.num_comments,
-      embed: embed
+      embed: embed_autoplay,
+      loading: false
     })
   }
 
@@ -92,7 +95,14 @@ class Viewer extends Component {
     if (nextProps.videos){
       this.updateVideo(nextProps.videos, this.state.current);
     } else {
-      console.log("NO VIDEO");
+      this.setState({
+        title: "",
+        link: "",
+        upvotes: 0,
+        comments: 0,
+        embed: "",
+        loading: true
+      })
     }
   }
 
@@ -115,7 +125,8 @@ class Viewer extends Component {
                 <img src={navArrow} alt="Next Video" className="nextArrow" onClick={this.nextVideo}/>
                 <img src={navArrow} alt="Previous Video" className="prevArrow" onClick={this.prevVideo}/>
               </div>
-              <div className="frame"></div>
+              <div className="frame" dangerouslySetInnerHTML={{__html: this.state.embed}} />
+              { this.state.loading && <Loading /> }
             </div>
           </div>
           <div className="row">
@@ -135,7 +146,7 @@ class Viewer extends Component {
           <Browser videos={this.props.videos} current={this.state.current} changeCurrent={this.changeCurrent}/>
         </div>
       </div>
-      <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent}/>
+      <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent} channels={this.props.channels} addChannel={this.props.addChannel}/>
       </div>
     );
   }

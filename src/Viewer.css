@@ -57,9 +57,16 @@
   margin-bottom: 15px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1450px) {
+  .screen {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1024px) {
   .screen {
     max-height: 350px;
+    width: 75%;
   }
 
   .nextArrow, .prevArrow {
@@ -67,7 +74,7 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .screen {
     max-height: 250px;
     max-width: 94%;

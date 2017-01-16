@@ -3,14 +3,36 @@
   right: 0;
   top: 129px;
   width: 200px;
-  height: 55vh;
-  max-height: 800px;
-  min-height: 150px;
   background-color: #eee;
   border-radius: 5px;
   box-shadow: 0 0 50px 0px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s;
+}
+
+.hidden {
+  transform: translateX(200px);
+}
+
+.channelContent {
+  height: 55vh;
+  max-height: 800px;
+  min-height: 150px;
   overflow-y: scroll;
+}
+
+.channelHide {
+  position: absolute;
+  right: 215px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  opacity: 0.1;
+  cursor: pointer;
+}
+
+.channelHide:hover{
+  opacity: 0.2;
 }
 
 .channel {
@@ -67,13 +89,19 @@
   opacity: 0.7;
 }
 
-@media (max-width: 1000px) {
-  .channels {
+@media (max-width: 1550px) {
+  .channelHide {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .channelContent {
     max-height: 350px;
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .channels {
     display: none;
   }

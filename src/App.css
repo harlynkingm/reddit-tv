@@ -1,5 +1,7 @@
 body {
   background-color: #fafafa;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .inline {

@@ -8,11 +8,34 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      subreddit: 'r/videos',
-      videos: null
+      subreddit: 'r/Videos',
+      videos: null,
+      channels: [
+      'r/Videos',
+      'r/YouTubeHaiku',
+      'r/ContagiousLaughter',
+      'r/Cringe',
+      'r/Trailers',
+      'r/UnexpectedThugLife',
+      'r/AccidentalComedy',
+      'r/YouTubeClassics',
+      'r/DeepIntoYouTube',
+      'r/PlayItAgainSam',
+      'r/ArtisanVideos',
+      'r/MealTimeVideos'
+      ]
     };
     this.loadData = this.loadData.bind(this);
     this.loadedData = this.loadedData.bind(this);
+    this.addChannel = this.addChannel.bind(this);
+  }
+
+  addChannel(newChannel){
+    const c = this.state.channels;
+    c.push(newChannel);
+    this.setState({
+      channels: c
+    });
   }
 
   componentDidMount(){
@@ -45,7 +68,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Viewer subreddit={this.state.subreddit} videos={this.state.videos} currentChannel={this.state.subreddit} changeChannel={this.loadData}/>
+        <Viewer subreddit={this.state.subreddit} videos={this.state.videos} currentChannel={this.state.subreddit} changeChannel={this.loadData} channels={this.state.channels} addChannel={this.addChannel}/>
       </div>
     );
   }
