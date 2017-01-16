@@ -32,3 +32,14 @@
   cursor: pointer;
   opacity: 1;
 }
+
+@media (max-width: 600px) {
+  .header-right{
+    display: none;
+  }
+
+  .header img{
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+}

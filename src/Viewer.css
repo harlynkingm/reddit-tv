@@ -81,10 +81,6 @@
     margin: auto;
   }
 
-  .header-right {
-    display: none;
-  }
-
   .nextArrow {
     right: -8px;
   }
