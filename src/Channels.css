@@ -27,12 +27,12 @@
   top: 50%;
   transform: translateY(-50%);
   height: 30px;
-  opacity: 0.1;
+  opacity: 0.2;
   cursor: pointer;
 }
 
 .channelHide:hover{
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .channel {
@@ -103,6 +103,16 @@
 
 @media (max-width: 600px) {
   .channels {
-    display: none;
+    position: block;
+    width: 100%;
+    top: auto;
+    border-radius: 0;
+  }
+
+  .channelContent {
+    height: auto;
+    max-height: inherit;
+    overflow-y: auto;
+    min-height: auto;
   }
 }
