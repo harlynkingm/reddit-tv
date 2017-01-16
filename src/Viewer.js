@@ -3,6 +3,7 @@ import $ from 'jquery';
 import Browser from './Browser';
 import Channels from './Channels';
 import Loading from './Loading';
+import Info from './Info';
 import './Viewer.css';
 import arrow from '../public/images/arrow.png';
 import navArrow from '../public/images/navArrow.png';
@@ -147,6 +148,7 @@ class Viewer extends Component {
         </div>
       </div>
       <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent} channels={this.props.channels} addChannel={this.props.addChannel}/>
+      <Info />
       </div>
     );
   }

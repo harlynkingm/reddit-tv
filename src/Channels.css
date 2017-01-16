@@ -10,7 +10,7 @@
   transition: transform 0.3s;
 }
 
-.hidden {
+.channelsHidden {
   transform: translateX(200px);
 }
 

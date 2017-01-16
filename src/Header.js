@@ -8,7 +8,6 @@ class Header extends Component {
       <div className="header">
         <a href="/"><img src={logo} alt="Reddit TV"/></a>
         <div className="header-right">
-          <h6 className="inline header-right-button">About</h6>
           <h6 className="inline header-right-button" onClick={this.props.randomChannel}>Random Channel</h6>
         </div>
       </div>

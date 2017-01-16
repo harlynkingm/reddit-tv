@@ -100,7 +100,7 @@ class Channels extends Component {
   render() {
     var mainClasses = "channels noselect";
     if (this.state.hidden){
-      mainClasses += " hidden";
+      mainClasses += " channelsHidden";
     }
     return (
       <div className={mainClasses}>
