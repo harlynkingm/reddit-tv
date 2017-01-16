@@ -98,7 +98,7 @@ class Channels extends Component {
   }
 
   render() {
-    var mainClasses = "channels noselect";
+    var mainClasses = "channels noselect boxShadow";
     if (this.state.hidden){
       mainClasses += " channelsHidden";
     }

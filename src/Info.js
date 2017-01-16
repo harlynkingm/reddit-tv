@@ -56,7 +56,7 @@ class Info extends Component {
   }
 
   render() {
-    var mainClasses = "info noselect";
+    var mainClasses = "info noselect boxShadow";
     if (this.state.hidden){
       mainClasses += " infoHidden";
     }
@@ -68,7 +68,7 @@ class Info extends Component {
             <b>RedditTV</b> provides a new way to explore reddit video content.
           </p>
           <p className="infoBody">
-            Like a telvision remote, you can use your <b>arrow keys</b> to navigate.
+            Like a television remote, you can use your <b>arrow keys</b> to navigate.
           </p>
           <p className="infoBody arrowKeys">
             <span className={this.state.left}>←</span>

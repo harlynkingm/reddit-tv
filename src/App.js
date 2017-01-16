@@ -17,11 +17,11 @@ class App extends Component {
       'r/ContagiousLaughter',
       'r/Cringe',
       'r/Trailers',
-      'r/UnexpectedThugLife',
+      'r/CookingVideos',
       'r/AccidentalComedy',
-      'r/YouTubeClassics',
+      'r/ListenToThis',
       'r/DeepIntoYouTube',
-      'r/PlayItAgainSam',
+      'r/ShortFilms',
       'r/ArtisanVideos',
       'r/MealTimeVideos'
       ]

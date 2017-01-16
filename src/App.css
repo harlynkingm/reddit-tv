@@ -65,3 +65,7 @@ body {
   left: -15px;
   transform: translate(-100%, -50%) rotateZ(180deg);
 }
+
+.boxShadow {
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
+}
