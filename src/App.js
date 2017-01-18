@@ -30,6 +30,7 @@ class App extends Component {
     this.loadedData = this.loadedData.bind(this);
     this.addChannel = this.addChannel.bind(this);
     this.randomChannel = this.randomChannel.bind(this);
+    this.removeChannel = this.removeChannel.bind(this);
   }
 
   addChannel(newChannel){
@@ -43,6 +44,17 @@ class App extends Component {
   randomChannel(){
     const r = Math.floor(Math.random() * (this.state.channels.length));
     this.loadData(this.state.channels[r]);
+  }
+
+  removeChannel(channel){
+    const newChannels = this.state.channels;
+    const i = newChannels.indexOf(channel);
+    if (i > -1){
+      newChannels.splice(i, 1);
+    }
+    this.setState({
+      channels: newChannels
+    });
   }
 
   componentDidMount(){
@@ -75,7 +87,7 @@ class App extends Component {
     return (
       <div>
         <Header randomChannel={this.randomChannel}/>
-        <Viewer subreddit={this.state.subreddit} videos={this.state.videos} currentChannel={this.state.subreddit} changeChannel={this.loadData} channels={this.state.channels} addChannel={this.addChannel}/>
+        <Viewer subreddit={this.state.subreddit} videos={this.state.videos} currentChannel={this.state.subreddit} changeChannel={this.loadData} channels={this.state.channels} addChannel={this.addChannel} removeChannel={this.removeChannel}/>
         <Footer />
       </div>
     );

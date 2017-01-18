@@ -21,6 +21,7 @@ class Channels extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.switchChannel = this.switchChannel.bind(this);
     this.hideChannels = this.hideChannels.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleKeyPress(event, parent){
@@ -44,6 +45,10 @@ class Channels extends Component {
   handleClick(e){
     this.props.changeChannel(e.currentTarget.textContent);
     this.props.resetCurrent();
+  }
+
+  handleRemove(e){
+    this.props.removeChannel(e.currentTarget.dataset.channel);
   }
 
   handleChange(e){
@@ -91,9 +96,14 @@ class Channels extends Component {
 
   renderChannel(channel, index){
     if (channel === this.props.currentChannel){
-      return <p className="channel selected" key={index}>{channel}</p>
+      return (<p className="channel selected" key={index}>
+        <span className="channelName">{channel}</span>
+      </p>)
     } else {
-      return <p className="channel" key={index} onClick={this.handleClick}>{channel}</p>
+      return (<p className="channel" key={index}>
+        <span className="channelName" onClick={this.handleClick}>{channel}</span>
+        <span className="channelClose" data-channel={channel} onClick={this.handleRemove}>x</span>
+      </p>)
     }
   }
 

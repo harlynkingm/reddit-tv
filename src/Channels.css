@@ -44,10 +44,6 @@
   cursor: pointer;
 }
 
-.channel:hover {
-  opacity: 0.7;
-}
-
 .channelHeader {
   padding-top: 10px;
   font-style: italic;
@@ -88,10 +84,19 @@
   opacity: 0.7;
 }
 
-@media (max-width: 1550px) {
-  .channelHide {
-    display: none;
-  }
+.channelName {
+  display: inline-block;
+  width: 94%;
+}
+
+.channelName:hover, .channelClose:hover {
+  opacity: 0.7;
+}
+
+.channelClose {
+  display: inline-block;
+  width: 6%;
+  opacity: 0.3;
 }
 
 @media (max-width: 1024px) {
@@ -100,7 +105,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 601px) {
   .channels {
     position: block;
     width: 100%;
@@ -113,5 +118,9 @@
     max-height: inherit;
     overflow-y: auto;
     min-height: auto;
+  }
+
+  .channelHide {
+    display: none;
   }
 }

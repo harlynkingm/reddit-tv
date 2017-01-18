@@ -59,14 +59,14 @@
 
 @media (max-width: 1450px) {
   .screen {
-    width: 90%;
+    width: 75%;
   }
 }
 
 @media (max-width: 1024px) {
   .screen {
     max-height: 350px;
-    width: 75%;
+    width: 60%;
   }
 
   .nextArrow, .prevArrow {
@@ -74,11 +74,12 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 601px) {
   .screen {
     max-height: 250px;
     max-width: 94%;
     margin: auto;
+    width: 75%;
   }
 
   .nextArrow {

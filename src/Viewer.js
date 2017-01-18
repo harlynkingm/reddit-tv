@@ -147,7 +147,7 @@ class Viewer extends Component {
           <Browser videos={this.props.videos} current={this.state.current} changeCurrent={this.changeCurrent}/>
         </div>
       </div>
-      <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent} channels={this.props.channels} addChannel={this.props.addChannel}/>
+      <Channels currentChannel={this.props.currentChannel} changeChannel={this.props.changeChannel} resetCurrent={this.resetCurrent} channels={this.props.channels} addChannel={this.props.addChannel} removeChannel={this.props.removeChannel}/>
       <Info />
       </div>
     );
