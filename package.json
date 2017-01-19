@@ -19,5 +19,5 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build"
   },
-  "homepage": "http://maxharlynking.com/reddit-tv"
+  "homepage": "http://snoo.tube/"
 }
