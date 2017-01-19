@@ -65,7 +65,7 @@ class Info extends Component {
         <div className="infoContent noselect">
           <p className="infoHeader">About</p>
           <p className="infoBody">
-            <b>RedditTV</b> provides a new way to explore reddit video content.
+            <b>SnooTube</b> provides a new way to explore reddit video content.
           </p>
           <p className="infoBody">
             Like a television remote, you can use your <b>arrow keys</b> to navigate.
